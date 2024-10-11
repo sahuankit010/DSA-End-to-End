@@ -29,7 +29,7 @@ public:
         // The graph is represented as an unordered_map where:
         // Key: node identifier (int)
         // Value: vector of pairs (neighbor node, edge weight)
-        unordered_map<int, vector<pair<int, int> > > adj = obj.getGraph();
+        unordered_map<int, unordered_map<int, int>  > adj; adj = obj.getGraph();
 
         // Get the number of nodes in the graph
         int size = adj.size();

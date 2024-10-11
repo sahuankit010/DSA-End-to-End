@@ -10,22 +10,23 @@ using namespace std;
 
 class BuildGraph {
 public:
-    unordered_map<int, vector<pair<int, int> > > adj;
+    unordered_map<int, unordered_map<int, int>  > adj;
 
-    unordered_map<int, vector<pair<int, int> > > getGraph() {
+    unordered_map<int, unordered_map<int, int>  > getGraph() {
         return adj;
     }
-    void addEdge(unordered_map<int, vector<pair<int, int> > > &adj, int u, int v, int wt) {
-        adj[u].push_back(make_pair(v, wt));
-        adj[v].push_back(make_pair(u, wt));
+    void addEdge(unordered_map<int, unordered_map<int, int>  > &adj, int u, int v, int wt) {
+        adj[u][v] =  wt;
+        adj[v][u] = wt;
     }
 
 
     void printGraph() {
+        cout<<" Graph is\n";
         for (auto it: adj) {
             cout << it.first << endl;
-            for (int i = 0; i < it.second.size(); i++) {
-                cout << it.second[i].first << " " << it.second[i].second << endl;
+            for (auto jt: it.second) {
+                cout << jt.first << " " << jt.second << endl;
             }
         }
     }
@@ -45,7 +46,7 @@ public:
         addEdge(adj, 6, 7, 1);
         addEdge(adj, 6, 8, 6);
         addEdge(adj, 7, 8, 7);
-        printGraph();
+//        printGraph();
     }
 };
 
